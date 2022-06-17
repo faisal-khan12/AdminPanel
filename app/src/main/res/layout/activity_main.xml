@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/sendbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/jobImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="#64DD17"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp"
+                app:cardMaxElevation="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/idpick"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="@color/white"
+                        app:srcCompat="@drawable/ic_add" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="Add Job Image"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/imgUser"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/jobImg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/jobImg"
+                app:layout_constraintTop_toTopOf="@+id/jobImg"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <EditText
+                android:id="@+id/etjobTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/edt_box_shape"
+                android:ems="10"
+                android:hint="Job Titile"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/jobImg" />
+
+            <EditText
+                android:id="@+id/etcompanyName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_box_shape"
+                android:ems="10"
+                android:hint="Company Name"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/etjobTitle"
+                app:layout_constraintStart_toStartOf="@+id/etjobTitle"
+                app:layout_constraintTop_toBottomOf="@+id/etjobTitle" />
+
+            <EditText
+                android:id="@+id/etJobType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_box_shape"
+                android:ems="10"
+                android:hint="Job Type"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/etcompanyName"
+                app:layout_constraintStart_toStartOf="@+id/etcompanyName"
+                app:layout_constraintTop_toBottomOf="@+id/etcompanyName" />
+
+            <EditText
+                android:id="@+id/etSalary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_box_shape"
+                android:ems="10"
+                android:hint=" Salary Range"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/etJobType"
+                app:layout_constraintStart_toStartOf="@+id/etJobType"
+                app:layout_constraintTop_toBottomOf="@+id/etJobType" />
+
+            <EditText
+                android:id="@+id/etjobtime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_box_shape"
+                android:ems="10"
+                android:hint="JobTime"
+                android:inputType="textPersonName"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@+id/etSalary"
+                app:layout_constraintStart_toStartOf="@+id/etSalary"
+                app:layout_constraintTop_toBottomOf="@+id/etSalary" />
+
+            <EditText
+                android:id="@+id/apply_Before"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_box_shape"
+                android:ems="10"
+                android:hint="Apply Before"
+                android:inputType="textPersonName"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@+id/etjobtime"
+                app:layout_constraintStart_toStartOf="@+id/etjobtime"
+                app:layout_constraintTop_toBottomOf="@+id/etjobtime" />
+
+            <EditText
+                android:id="@+id/jobPriceINR"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_box_shape"
+                android:ems="10"
+                android:hint="Job Price"
+                android:inputType="textPersonName"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@+id/apply_Before"
+                app:layout_constraintStart_toStartOf="@+id/apply_Before"
+                app:layout_constraintTop_toBottomOf="@+id/apply_Before" />
+
+            <EditText
+                android:id="@+id/jobLocation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_box_shape"
+                android:ems="10"
+                android:hint="Job Location"
+                android:inputType="textPersonName"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@+id/jobPriceINR"
+                app:layout_constraintStart_toStartOf="@+id/jobPriceINR"
+                app:layout_constraintTop_toBottomOf="@+id/jobPriceINR" />
+
+            <EditText
+                android:id="@+id/jobDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_box_shape"
+                android:ems="10"
+                android:hint="Job Description"
+                android:inputType="textPersonName"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@+id/jobLocation"
+                app:layout_constraintStart_toStartOf="@+id/jobLocation"
+                app:layout_constraintTop_toBottomOf="@+id/jobLocation" />
+
+            <EditText
+                android:id="@+id/rolesAndRes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_box_shape"
+                android:ems="10"
+                android:hint="Roles and Responsibilities"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/jobDescription"
+                app:layout_constraintTop_toBottomOf="@+id/jobDescription" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/green"
+        app:layout_constraintBottom_toBottomOf="@+id/nestedScrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/sendbtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#64DD17"
+        android:padding="15dp"
+        android:text="Send Data"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
