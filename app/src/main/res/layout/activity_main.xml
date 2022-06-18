@@ -48,8 +48,8 @@
                         android:id="@+id/imageView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:tint="@color/white"
-                        app:srcCompat="@drawable/ic_add" />
+                        app:srcCompat="@drawable/ic_add"
+                        app:tint="@color/white" />
 
                     <TextView
                         android:id="@+id/textView2"
@@ -107,15 +107,16 @@
                 app:layout_constraintStart_toStartOf="@+id/etjobTitle"
                 app:layout_constraintTop_toBottomOf="@+id/etjobTitle" />
 
-            <EditText
-                android:id="@+id/etJobType"
+
+            <Spinner
+                android:id="@+id/spinJobType"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/edt_box_shape"
-                android:ems="10"
-                android:hint="Job Type"
-                android:inputType="textPersonName"
+              android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:padding="8dp"
+
                 app:layout_constraintEnd_toEndOf="@+id/etcompanyName"
                 app:layout_constraintStart_toStartOf="@+id/etcompanyName"
                 app:layout_constraintTop_toBottomOf="@+id/etcompanyName" />
@@ -129,19 +130,16 @@
                 android:ems="10"
                 android:hint=" Salary Range"
                 android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="@+id/etJobType"
-                app:layout_constraintStart_toStartOf="@+id/etJobType"
-                app:layout_constraintTop_toBottomOf="@+id/etJobType" />
+                app:layout_constraintEnd_toEndOf="@+id/spinJobType"
+                app:layout_constraintStart_toStartOf="@+id/spinJobType"
+                app:layout_constraintTop_toBottomOf="@+id/spinJobType" />
 
-            <EditText
-                android:id="@+id/etjobtime"
+            <Spinner
+                android:id="@+id/spinJobTime"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/edt_box_shape"
-                android:ems="10"
-                android:hint="JobTime"
-                android:inputType="textPersonName"
+
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="@+id/etSalary"
                 app:layout_constraintStart_toStartOf="@+id/etSalary"
@@ -155,11 +153,12 @@
                 android:background="@drawable/edt_box_shape"
                 android:ems="10"
                 android:hint="Apply Before"
-                android:inputType="textPersonName"
+                android:inputType="text"
                 android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="@+id/etjobtime"
-                app:layout_constraintStart_toStartOf="@+id/etjobtime"
-                app:layout_constraintTop_toBottomOf="@+id/etjobtime" />
+
+                app:layout_constraintEnd_toEndOf="@+id/spinJobTime"
+                app:layout_constraintStart_toStartOf="@+id/spinJobTime"
+                app:layout_constraintTop_toBottomOf="@+id/spinJobTime" />
 
             <EditText
                 android:id="@+id/jobPriceINR"

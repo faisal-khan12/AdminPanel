@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -11,6 +12,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.dotaustere.adminpanel.databinding.ActivityMainBinding;
@@ -26,6 +31,9 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
@@ -51,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         dialog = new ProgressDialog(this);
 
+        spinners();
+        Calendar c = Calendar.getInstance();
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM");
+        postDate = sdf.format(c.getTime());
         databaseReference = FirebaseDatabase.getInstance().getReference("AdminPanel").child("job");
         storageReference = FirebaseStorage.getInstance().getReference("AdminPanel").child("job");
 
@@ -74,6 +87,43 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void spinners() {
+        String[] jobTypeArray = {"Select any job Type", "Remote", "WFO"};
+        String[] jobTimeArray = {"Select any time", "Full Time", "Part Time"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.selected_items, jobTypeArray);
+        binding.spinJobType.setAdapter(adapter);
+        adapter.setDropDownViewResource(R.layout.drop_down);
+
+        binding.spinJobType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                jobType = binding.spinJobType.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(MainActivity.this, R.layout.selected_items, jobTimeArray);
+        binding.spinJobTime.setAdapter(adapter1);
+        adapter1.setDropDownViewResource(R.layout.drop_down);
+
+        binding.spinJobTime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                jobTime = binding.spinJobTime.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     private void uploadImage() {
@@ -114,9 +164,9 @@ public class MainActivity extends AppCompatActivity {
     private void uploadData() {
         jobTitle = binding.etjobTitle.getText().toString();
         companyName = binding.etcompanyName.getText().toString();
-        jobType = binding.etJobType.getText().toString();
+
         salaryRange = binding.etSalary.getText().toString();
-        jobTime = binding.etjobtime.getText().toString();
+
 
         uniqueKey = UUID.randomUUID().toString();
 
@@ -128,13 +178,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         Users model = new Users(downloadurl, jobTitle, companyName, jobType, uniqueKey, jobTime,
-                "", applyBefore, jobPriceINr, jobDes, jobRoleAndRes, salaryRange,jobLocation);
+                postDate, applyBefore, jobPriceINr, jobDes, jobRoleAndRes, salaryRange, jobLocation);
         databaseReference.child(uniqueKey).setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 dialog.dismiss();
                 Toast.makeText(MainActivity.this, "data added", Toast.LENGTH_SHORT).show();
                 emptyBoxes();
+                startActivity(new Intent(MainActivity.this,MainActivity.class));
+                finishAffinity();
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -152,10 +204,11 @@ public class MainActivity extends AppCompatActivity {
 
         binding.etjobTitle.setText("");
         binding.etcompanyName.setText("");
-        binding.etJobType.setText("");
-        binding.etSalary.setText("");
-        binding.etjobtime.setText("");
 
+        binding.etSalary.setText("");
+
+        binding.spinJobTime.setSelection(0);
+        binding.spinJobType.setSelection(0);
         binding.applyBefore.setText("");
         binding.jobPriceINR.setText("");
         binding.jobLocation.setText("");
@@ -191,12 +244,15 @@ public class MainActivity extends AppCompatActivity {
             binding.etjobTitle.setError("Please Type jobTitle");
         } else if (binding.etcompanyName.getText().toString().isEmpty()) {
             binding.etcompanyName.setError("Please Type Company name");
-        } else if (binding.etJobType.getText().toString().isEmpty()) {
-            binding.etJobType.setError("Please Enter JobType");
+
+
+        } else if (jobType.equals("Select any job Type")) {
+            Toast.makeText(this, "Select any job type", Toast.LENGTH_SHORT).show();
         } else if (binding.etSalary.getText().toString().isEmpty()) {
             binding.etSalary.setError("Please Enter SalaryRange");
-        } else if (binding.etjobtime.getText().toString().isEmpty()) {
-            binding.etjobtime.setError("Please Enter Job Time");
+        } else if (jobTime.equals("Select any time")) {
+//            binding.etjobtime.setError("Please Enter Job Time");
+            Toast.makeText(this, "Please Enter Job Time", Toast.LENGTH_SHORT).show();
         } else if (binding.applyBefore.getText().toString().isEmpty()) {
             binding.applyBefore.setError("Please Enter Apply Before");
         } else if (binding.jobPriceINR.getText().toString().isEmpty()) {
