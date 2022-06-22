@@ -16,9 +16,9 @@ public class ButtonActivity extends AppCompatActivity {
         binding = ActivityButtonBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.addPaidJobBtn.setOnClickListener(view -> startActivity(new Intent(ButtonActivity.this
-                ,MainActivity.class
-                )));
-
+        binding.addPaidJobBtn.setOnClickListener(view ->
+                startActivity(new Intent(ButtonActivity.this, MainActivity.class)));
+        binding.allUsers.setOnClickListener(view ->
+                startActivity(new Intent(ButtonActivity.this, AllUsers_Activity.class)));
     }
 }
