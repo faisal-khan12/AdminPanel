@@ -1,4 +1,4 @@
-package com.dotaustere.adminpanel;
+package com.dotaustere.adminpanel.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,10 +14,10 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
+import com.dotaustere.adminpanel.Models.JobModel;
+import com.dotaustere.adminpanel.R;
 import com.dotaustere.adminpanel.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,7 +31,6 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.UUID;
@@ -177,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         jobRoleAndRes = binding.rolesAndRes.getText().toString();
 
 
-        Users model = new Users(downloadurl, jobTitle, companyName, jobType, uniqueKey, jobTime,
+        JobModel model = new JobModel(downloadurl, jobTitle, companyName, jobType, uniqueKey, jobTime,
                 postDate, applyBefore, jobPriceINr, jobDes, jobRoleAndRes, salaryRange, jobLocation);
         databaseReference.child(uniqueKey).setValue(model).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

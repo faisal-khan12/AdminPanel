@@ -4,22 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ButtonActivity">
+    tools:context=".Activities.ButtonActivity">
 
     <Button
         android:id="@+id/addPaidJobBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="52dp"
 
+        android:layout_marginEnd="32dp"
         android:backgroundTint="#64DD17"
-        android:padding="15dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:text="Add Paid Jobs"
         android:textColor="@color/white"
         android:textSize="16sp"
-        android:layout_marginTop="52dp"
         android:textStyle="bold"
+        app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,13 +35,35 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:backgroundTint="#64DD17"
-        android:padding="15dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:text="All Users"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addPaidJobBtn" />
+
+    <Button
+        android:id="@+id/regDevice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="#64DD17"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="All Register Device's"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/allUsers" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

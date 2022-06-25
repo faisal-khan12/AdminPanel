@@ -1,15 +1,16 @@
-package com.dotaustere.adminpanel;
+package com.dotaustere.adminpanel.Models;
 
 public class InfoModel {
 
-    String firstName, lastName, userAddress, city, zipCode, gst, uniqueKey,userId;
-
+    String firstName, lastName, userAddress, city, zipCode, gst, uniqueKey,userId,select;
     String frontImage,backImage,selectedDoc;
+
+
 
     public InfoModel() {
     }
 
-    public InfoModel(String firstName, String lastName, String userAddress, String city, String zipCode, String gst, String uniqueKey, String userId, String frontImage, String backImage, String selectedDoc) {
+    public InfoModel(String firstName, String lastName, String userAddress, String city, String zipCode, String gst, String uniqueKey, String userId, String select, String frontImage, String backImage, String selectedDoc) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userAddress = userAddress;
@@ -18,6 +19,7 @@ public class InfoModel {
         this.gst = gst;
         this.uniqueKey = uniqueKey;
         this.userId = userId;
+        this.select = select;
         this.frontImage = frontImage;
         this.backImage = backImage;
         this.selectedDoc = selectedDoc;
@@ -85,6 +87,14 @@ public class InfoModel {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getSelect() {
+        return select;
+    }
+
+    public void setSelect(String select) {
+        this.select = select;
     }
 
     public String getFrontImage() {

@@ -1,16 +1,16 @@
-package com.dotaustere.adminpanel;
+package com.dotaustere.adminpanel.Models;
 
-public class Users {
+public class JobModel {
 
     String jobImg;
     String jobTitle, companyName, jobType,uniqueKey, jobTime, jobPostDate;
     String applyBefore, jobPriceINR, JobDescription, rolesAndRESPONSIBILITIES,salaryRange,jobLocation;
 
-    public Users() {
+    public JobModel() {
     }
 
 
-    public Users(String jobImg, String jobTitle, String companyName, String jobType, String uniqueKey, String jobTime, String jobPostDate, String applyBefore, String jobPriceINR, String jobDescription, String rolesAndRESPONSIBILITIES, String salaryRange, String jobLocation) {
+    public JobModel(String jobImg, String jobTitle, String companyName, String jobType, String uniqueKey, String jobTime, String jobPostDate, String applyBefore, String jobPriceINR, String jobDescription, String rolesAndRESPONSIBILITIES, String salaryRange, String jobLocation) {
         this.jobImg = jobImg;
         this.jobTitle = jobTitle;
         this.companyName = companyName;

@@ -1,4 +1,4 @@
-package com.dotaustere.adminpanel;
+package com.dotaustere.adminpanel.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 
+import com.dotaustere.adminpanel.Adapters.InfoUserAdapter;
+import com.dotaustere.adminpanel.Models.InfoModel;
 import com.dotaustere.adminpanel.databinding.ActivityInfoBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +32,8 @@ public class InfoActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         uid = getIntent().getStringExtra("uid");
+
+        getSupportActionBar().hide();
 
         infoRef = FirebaseDatabase.getInstance().getReference("UsersInfo");
 

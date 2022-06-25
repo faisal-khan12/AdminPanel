@@ -1,4 +1,4 @@
-package com.dotaustere.adminpanel;
+package com.dotaustere.adminpanel.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 
+import com.dotaustere.adminpanel.Adapters.UserAdapter;
+import com.dotaustere.adminpanel.Models.UserDataModel;
 import com.dotaustere.adminpanel.databinding.ActivityAllUsersBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +30,8 @@ public class AllUsers_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAllUsersBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        getSupportActionBar().hide();
 
         userRef = FirebaseDatabase.getInstance().getReference("AllUsers");
 

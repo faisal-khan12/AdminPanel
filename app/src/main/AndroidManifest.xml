@@ -12,13 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminPanel">
         <activity
-            android:name=".InfoActivity"
+            android:name=".Activities.RegDeviceActivity"
             android:exported="false" />
         <activity
-            android:name=".AllUsers_Activity"
+            android:name=".Activities.InfoActivity"
             android:exported="false" />
         <activity
-            android:name=".ButtonActivity"
+            android:name=".Activities.AllUsers_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ButtonActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="false" />
 
         <meta-data
