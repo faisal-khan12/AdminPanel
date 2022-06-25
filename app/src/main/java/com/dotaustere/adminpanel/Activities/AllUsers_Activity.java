@@ -4,11 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.dotaustere.adminpanel.Adapters.UserAdapter;
 import com.dotaustere.adminpanel.Models.UserDataModel;
 import com.dotaustere.adminpanel.databinding.ActivityAllUsersBinding;
+import com.dotaustere.adminpanel.databinding.LoadingLayoutBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 public class AllUsers_Activity extends AppCompatActivity {
     ActivityAllUsersBinding binding;
     DatabaseReference userRef;
+    AlertDialog loadingDialog;
 
     ArrayList<UserDataModel> modelArrayList;
     UserAdapter adapter;
@@ -32,6 +36,7 @@ public class AllUsers_Activity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         getSupportActionBar().hide();
+        loadingAlertDialog();
 
         userRef = FirebaseDatabase.getInstance().getReference("AllUsers");
 
@@ -47,6 +52,7 @@ public class AllUsers_Activity extends AppCompatActivity {
                         UserDataModel data = s.getValue(UserDataModel.class);
 
                         modelArrayList.add(data);
+                        loadingDialog.dismiss();
 //                        Arrays.sort(new ArrayList[]{listPoet});
                         binding.recview.setLayoutManager(new LinearLayoutManager(AllUsers_Activity.this));
 
@@ -68,11 +74,23 @@ public class AllUsers_Activity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                loadingDialog.dismiss();
+                Toast.makeText(AllUsers_Activity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
 
+    }
+
+    public void loadingAlertDialog() {
+
+        LoadingLayoutBinding bindingDialog = LoadingLayoutBinding.inflate(getLayoutInflater());
+        loadingDialog = new AlertDialog.Builder(AllUsers_Activity.this).
+                setView(bindingDialog.getRoot()).create();
+        loadingDialog.setCanceledOnTouchOutside(false);
+        loadingDialog.setCancelable(false);
+        loadingDialog.show();
+        loadingDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
     }
 
