@@ -49,4 +49,6 @@ dependencies {
 
     implementation 'com.airbnb.android:lottie:5.0.3'
 
+    implementation 'com.github.angads25:toggle:1.1.0'
+
 }
