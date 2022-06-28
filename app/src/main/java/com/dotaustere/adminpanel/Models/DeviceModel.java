@@ -3,14 +3,17 @@ package com.dotaustere.adminpanel.Models;
 public class DeviceModel {
 
     String deviceID,userPhoneNumber;
+    boolean valid;
 
 
     public DeviceModel() {
     }
 
-    public DeviceModel(String deviceID, String userPhoneNumber) {
+
+    public DeviceModel(String deviceID, String userPhoneNumber, boolean valid) {
         this.deviceID = deviceID;
         this.userPhoneNumber = userPhoneNumber;
+        this.valid = valid;
     }
 
     public String getDeviceID() {
@@ -27,5 +30,13 @@ public class DeviceModel {
 
     public void setUserPhoneNumber(String userPhoneNumber) {
         this.userPhoneNumber = userPhoneNumber;
+    }
+
+    public boolean isValid() {
+        return valid;
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
     }
 }

@@ -50,17 +50,28 @@ public class RegDeviceActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
+                    arrayList.clear();
                     for (DataSnapshot s : snapshot.getChildren()) {
                         DeviceModel data = s.getValue(DeviceModel.class);
                         arrayList.add(data);
                         loadingDialog.dismiss();
+//                        if (arrayList.isEmpty()){
+//                            Toast.makeText(RegDeviceActivity.this, "Not Data Found", Toast.LENGTH_SHORT).show();
+//                            loadingDialog.dismiss();
+//                        }else {
+//                            arrayList.add(data);
+//                            loadingDialog.dismiss();
+//                        }
+
+
                         adapter = new DeviceAdapter(arrayList, RegDeviceActivity.this);
                         binding.recyclerViewDevice.setLayoutManager(
                                 new LinearLayoutManager(RegDeviceActivity.this));
                         binding.recyclerViewDevice.setAdapter(adapter);
-
-
                     }
+                } else {
+                    Toast.makeText(RegDeviceActivity.this, "Not Data Found", Toast.LENGTH_SHORT).show();
+                    loadingDialog.dismiss();
                 }
             }
 
