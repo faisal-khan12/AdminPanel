@@ -1,5 +1,6 @@
 package com.dotaustere.adminpanel.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dotaustere.adminpanel.FcmNotificationsSender;
 import com.dotaustere.adminpanel.Models.DeviceModel;
 import com.dotaustere.adminpanel.R;
 import com.dotaustere.adminpanel.databinding.DeviceLayoutBinding;
@@ -44,9 +46,12 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.viewHolder
         deviceRef = FirebaseDatabase.getInstance().getReference().child("RegDevices");
 
 
-//        holder.binding.fullname.setText("Full Name: " + model.getFullName());
         holder.binding.devMobileNo.setText(model.getUserPhoneNumber());
+        holder.binding.deviceName.setText(model.getDeviceName());
+        holder.binding.androidOs.setText(model.getAndroidOs());
+        holder.binding.appVersion.setText(model.getAppVersion());
         holder.binding.deviceId.setText(model.getDeviceID());
+
 
         if (model.isValid()) {
             holder.binding.blockSwitch.setText("Account is Active  ");
@@ -59,24 +64,61 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.viewHolder
 
         holder.binding.blockSwitch.setChecked(model.isValid());
 
+
+//        holder.binding.blockSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                if (compoundButton.isChecked()) {
+//                    deviceRef.child(model.getDeviceID()).child("valid").setValue(true);
+////                    Toast.makeText(context, model.getDeviceID(), Toast.LENGTH_SHORT).show();
+////                    holder.binding.blockSwitch.setText("Switch to deactivate Service   ");
+//
+//                    FcmNotificationsSender notificationsSender = new FcmNotificationsSender(
+//                            model.getToken(), "Naukri Bazaar", "Congrats! Your Device is unblocked from NaukriBazaar India", context.getApplicationContext(), (Activity) context
+//                    );
+//                    notificationsSender.SendNotifications();
+//
+//                    Toast.makeText(context, model.getUserPhoneNumber() + "\n is Activate Now", Toast.LENGTH_SHORT).show();
+//                }
+//                else
+//                {
+//                    deviceRef.child(model.getDeviceID()).child("valid").setValue(false);
+////                    Toast.makeText(context, model.getDeviceID(), Toast.LENGTH_SHORT).show();
+////                    holder.binding.blockSwitch.setText("Switch to activate Service   ");
+//
+//                    FcmNotificationsSender notificationsSender = new FcmNotificationsSender(
+//                            model.getToken(), "Naukri Bazaar", "Your Device is now! blocked from NaukriBazaar India", context.getApplicationContext(), (Activity) context
+//                    );
+//                    notificationsSender.SendNotifications();
+//                    Toast.makeText(context, model.getUserPhoneNumber() + "\n is Blocked Now", Toast.LENGTH_SHORT).show();
+//
+//                }
+//            }
+//        });
+
         holder.binding.blockSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
                 if (compoundButton.isChecked()) {
+                    FcmNotificationsSender notificationsSender = new FcmNotificationsSender(
+                            model.getToken(), "Naukri Bazaar", "Your Device is now! blocked from NaukriBazaar India", context.getApplicationContext(), (Activity) context
+                    );
+                    notificationsSender.SendNotifications();
                     deviceRef.child(model.getDeviceID()).child("valid").setValue(true);
-//                    Toast.makeText(context, model.getDeviceID(), Toast.LENGTH_SHORT).show();
-//                    holder.binding.blockSwitch.setText("Switch to deactivate Service   ");
-                    Toast.makeText(context, model.getUserPhoneNumber() + "\n is Activate Now", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "ON", Toast.LENGTH_SHORT).show();
                 } else {
+                    FcmNotificationsSender notificationsSender = new FcmNotificationsSender(
+                            model.getToken(), "Naukri Bazaar", "Your Device is now! unblocked from NaukriBazaar India", context.getApplicationContext(), (Activity) context
+                    );
+                    notificationsSender.SendNotifications();
                     deviceRef.child(model.getDeviceID()).child("valid").setValue(false);
-//                    Toast.makeText(context, model.getDeviceID(), Toast.LENGTH_SHORT).show();
-//                    holder.binding.blockSwitch.setText("Switch to activate Service   ");
-                    Toast.makeText(context, model.getUserPhoneNumber() + "\n is Blocked Now", Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText(context, "OFF", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
-
-
 
 
     }

@@ -25,6 +25,7 @@ public class AllUsers_Activity extends AppCompatActivity {
     DatabaseReference userRef;
     AlertDialog loadingDialog;
 
+
     ArrayList<UserDataModel> modelArrayList;
     UserAdapter adapter;
 
@@ -50,7 +51,6 @@ public class AllUsers_Activity extends AppCompatActivity {
                     modelArrayList.clear();
                     for (DataSnapshot s : snapshot.getChildren()) {
                         UserDataModel data = s.getValue(UserDataModel.class);
-
                         modelArrayList.add(data);
                         loadingDialog.dismiss();
 //                        Arrays.sort(new ArrayList[]{listPoet});
