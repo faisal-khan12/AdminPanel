@@ -18,25 +18,25 @@
             android:id="@+id/greenview"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/viewshape"
             android:backgroundTint="@color/green"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/blockSwitch"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/blockSwitch" />
 
         <View
             android:id="@+id/yellowview"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="12dp"
             android:background="@drawable/viewshape"
             android:backgroundTint="#D50000"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/greenview"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/greenview" />
 
         <TextView
             android:id="@+id/textView"
@@ -76,13 +76,13 @@
         <TextView
             android:id="@+id/deviceName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="32dp"
-            android:text="TextView"
+            android:layout_marginEnd="8dp"
+            android:text="Google Android SDK built for x86"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView9"
-            app:layout_constraintEnd_toStartOf="@+id/greenview"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView9"
             app:layout_constraintTop_toTopOf="@+id/textView9" />
 
@@ -157,12 +157,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="3dp"
             android:textSize="14sp"
             android:thumb="@drawable/blockthumb"
             app:layout_constraintBottom_toTopOf="@+id/view3"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/greenview"
             app:layout_constraintTop_toBottomOf="@+id/deviceId"
             app:thumbTextPadding="5dp"
             app:track="@drawable/switchtrack" />

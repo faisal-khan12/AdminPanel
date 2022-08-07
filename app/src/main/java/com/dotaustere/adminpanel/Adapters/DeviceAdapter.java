@@ -102,14 +102,14 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.viewHolder
 
                 if (compoundButton.isChecked()) {
                     FcmNotificationsSender notificationsSender = new FcmNotificationsSender(
-                            model.getToken(), "Naukri Bazaar", "Your Device is now! blocked from NaukriBazaar India", context.getApplicationContext(), (Activity) context
+                            model.getToken(), "Naukri Bazaar", "Congrats! Your Device is UNBLOCKED from NaukriBazaar India", context.getApplicationContext(), (Activity) context
                     );
                     notificationsSender.SendNotifications();
                     deviceRef.child(model.getDeviceID()).child("valid").setValue(true);
                     Toast.makeText(context, "ON", Toast.LENGTH_SHORT).show();
                 } else {
                     FcmNotificationsSender notificationsSender = new FcmNotificationsSender(
-                            model.getToken(), "Naukri Bazaar", "Your Device is now! unblocked from NaukriBazaar India", context.getApplicationContext(), (Activity) context
+                            model.getToken(), "Naukri Bazaar", "Your Device is now! blocked from NaukriBazaar India", context.getApplicationContext(), (Activity) context
                     );
                     notificationsSender.SendNotifications();
                     deviceRef.child(model.getDeviceID()).child("valid").setValue(false);
